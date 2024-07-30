@@ -3,6 +3,7 @@ package com.vitadairy.libraries.importexport.common;
 import com.vitadairy.libraries.importexport.dto.RowError;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author duyenthai
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public class ImportResponse extends BaseResponse {
     private int readCount;

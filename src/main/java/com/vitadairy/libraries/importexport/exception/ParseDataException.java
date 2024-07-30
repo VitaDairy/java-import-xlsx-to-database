@@ -1,6 +1,7 @@
 package com.vitadairy.libraries.importexport.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import java.util.List;
  * @author duyenthai
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class ParseDataException extends RuntimeException {
 
     private List<String> fieldNames;

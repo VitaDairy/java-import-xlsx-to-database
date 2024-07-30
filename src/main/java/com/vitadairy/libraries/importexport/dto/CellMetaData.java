@@ -1,14 +1,18 @@
 package com.vitadairy.libraries.importexport.dto;
 
 import com.vitadairy.libraries.importexport.common.DataType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author duyenthai
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CellMetaData {
     private String name;
     private DataType dataType;

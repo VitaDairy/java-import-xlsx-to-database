@@ -15,6 +15,13 @@ public class ParseCellDateService implements ParseCellService {
     private final SimpleDateFormat sdf;
     private final ILogger logger;
 
+    public ParseCellDateService(ILogger logger) {
+        this.dateFormat = "dd/MM/yyyy";
+
+        this.sdf = new SimpleDateFormat(dateFormat);
+        this.logger = logger;
+    }
+
     public ParseCellDateService(String dateFormat, ILogger logger) {
         this.dateFormat = dateFormat;
 

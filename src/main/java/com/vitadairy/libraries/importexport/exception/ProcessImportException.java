@@ -1,11 +1,13 @@
 package com.vitadairy.libraries.importexport.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author duyenthai
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class ProcessImportException extends Exception {
     private int lineNumber;
 

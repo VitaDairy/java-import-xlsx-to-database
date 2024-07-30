@@ -2,12 +2,14 @@ package com.vitadairy.libraries.importexport.common;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
  * @author duyenthai
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public class BatchResponse extends BaseResponse {
     private int totalRecord;

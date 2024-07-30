@@ -23,7 +23,7 @@ public class RowDataBuilder {
     public RowData build() {
         List<String> fieldErrors = new ArrayList<>();
         for (CellDataBuilder cellDataBuilder : cellDataBuilders) {
-            CellMetaData cellMetaData = columnMetaData.get(cellDataBuilder.getRowNumber());
+            CellMetaData cellMetaData = columnMetaData.get(cellDataBuilder.getColumnNumber());
             if (cellMetaData == null) {
                 throw new ParseDataException(List.of(cellDataBuilder.getName()), lineNumber, "Field not found");
             }

@@ -16,6 +16,7 @@ public class CellDataBuilder {
     private DataType cellType;
     private Object cellData;
     private Integer rowNumber;
+    private Integer columnNumber;
 
     public CellData build() {
         return CellData.builder()
@@ -23,6 +24,7 @@ public class CellDataBuilder {
                 .cellValue(cellData)
                 .cellType(cellType.toString())
                 .rowNumber(rowNumber)
+                .columnNumber(columnNumber)
                 .build();
     }
 }

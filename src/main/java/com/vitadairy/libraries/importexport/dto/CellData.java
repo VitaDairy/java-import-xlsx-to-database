@@ -13,5 +13,6 @@ public class CellData {
     private Object cellValue;
     private String cellType;
     private Integer rowNumber;
+    private Integer columnNumber;
 
 }

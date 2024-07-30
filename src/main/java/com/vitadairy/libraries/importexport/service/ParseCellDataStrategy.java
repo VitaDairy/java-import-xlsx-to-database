@@ -10,17 +10,13 @@ import lombok.RequiredArgsConstructor;
 public class ParseCellDataStrategy {
     private final ParseCellDefaultService parseCellDefaultService;
     private final ParseCellDateService parseCellDateService;
+    private final ParseCellNumberService parseCellNumberService;
 
     public ParseCellService getParseCellService(DataType dataType) {
-        switch (dataType) {
-            case STRING:
-                return parseCellDefaultService;
-            case NUMBER:
-                return parseCellDefaultService;
-            case DATE:
-                return parseCellDateService;
-            default:
-                return parseCellDefaultService;
-        }
+        return switch (dataType) {
+            case NUMBER -> parseCellNumberService;
+            case DATE -> parseCellDateService;
+            default -> parseCellDefaultService;
+        };
     }
 }

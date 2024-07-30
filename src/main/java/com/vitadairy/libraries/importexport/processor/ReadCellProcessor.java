@@ -22,6 +22,7 @@ public class ReadCellProcessor {
                 .cellType(cellMetaData.getDataType())
                 .cellData(cellData)
                 .rowNumber(rowNumber)
+                .columnNumber(cell.getColumnIndex())
                 .build();
     }
 }

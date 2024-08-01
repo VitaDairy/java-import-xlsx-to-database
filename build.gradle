@@ -5,6 +5,9 @@ plugins {
 group = 'com.vitadairy.libraries.importexport'
 version = '1.0.1'
 
+sourceCompatibility = 17
+targetCompatibility = 17
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'

@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
  * @author duyenthai
  */
 @RequiredArgsConstructor
-public class ProcessImportFileServiceImpl<T> implements ProcessImportFileService {
+public class ProcessImportFileServiceImpl<T> implements ProcessImportFileService<T> {
     private final ReadImportFileService<T> readImportFileService;
     private final ProcessDataService<T> processDataService;
 
@@ -36,6 +36,7 @@ public class ProcessImportFileServiceImpl<T> implements ProcessImportFileService
             response.setTotalRecord(batchResponse.getTotalRecord());
             response.setSuccessRecord(batchResponse.getSuccessRecord());
             response.setFailedRecord(batchResponse.getFailedRecord());
+            response.setDbResponses(batchResponse.getDbResponses());
         }
         return response;
     }

@@ -18,4 +18,5 @@ public class CellMetaData {
     private DataType dataType;
     private boolean checkNull;
     private boolean checkEmpty;
+    private String fieldName;
 }

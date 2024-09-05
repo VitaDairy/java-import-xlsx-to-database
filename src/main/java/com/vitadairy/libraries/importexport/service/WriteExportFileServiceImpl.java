@@ -9,10 +9,7 @@ import com.vitadairy.libraries.importexport.processor.WriteCellProcessor;
 import com.vitadairy.libraries.importexport.processor.WriteRowProcessor;
 import com.vitadairy.libraries.importexport.utils.WorkbookUtil;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
 import java.util.List;
@@ -88,10 +85,24 @@ public class WriteExportFileServiceImpl<T, R> implements WriteExportFileService<
 
     protected void writeExportFileHeader(Sheet sheet, Map<Integer, CellMetaData> cellMetadata) {
         Row header = sheet.createRow(0);
+        CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
+        Font font = sheet.getWorkbook().createFont();
+        font.setBold(true);
+        cellStyle.setFont(font);
+        cellStyle.setFillForegroundColor(IndexedColors.PALE_BLUE.getIndex());
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        cellStyle.setBorderBottom(BorderStyle.THIN);
+        cellStyle.setBorderTop(BorderStyle.THIN);
+        cellStyle.setBorderLeft(BorderStyle.THIN);
+        cellStyle.setBorderRight(BorderStyle.THIN);
+
         cellMetadata.forEach((key, value) -> {
             // write header
             Cell cell = header.createCell(key);
             cell.setCellValue(value.getName());
+            cell.setCellStyle(cellStyle);
         });
     }
 

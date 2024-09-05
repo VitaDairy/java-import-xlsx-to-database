@@ -6,8 +6,7 @@ import com.vitadairy.libraries.importexport.service.WriteDataService;
 import com.vitadairy.libraries.importexport.service.WriteDataServiceStrategy;
 import com.vitadairy.libraries.importexport.utils.StringUtils;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,12 +48,13 @@ public class WriteRowProcessor {
     }
 
     public void write(Row row, Object data, final Map<Integer, CellMetaData> columMetadata, final Map<Integer, WriteCellProcessor> processors) {
-        processors.forEach((key, value) -> {
-            // write cell
-        });
+        CellStyle cellStyle = getDefaultCellStyle(row.getSheet());
+
         columMetadata.forEach((key, value) -> {
             // write cell
             Cell cell = row.createCell(key);
+            cell.setCellStyle(cellStyle);
+
             WriteCellProcessor processor = processors.get(key);
             if (Objects.isNull(processor)) {
                 cell.setCellValue(StringUtils.EMPTY);
@@ -67,5 +67,15 @@ public class WriteRowProcessor {
                 iLogger.error("Error writing cell: " + value.getFieldName(), ex);
             }
         });
+    }
+
+    protected CellStyle getDefaultCellStyle(Sheet sheet) {
+        CellStyle res = sheet.getWorkbook().createCellStyle();
+        res.setBorderTop(BorderStyle.THIN);
+        res.setBorderBottom(BorderStyle.THIN);
+        res.setBorderLeft(BorderStyle.THIN);
+        res.setBorderRight(BorderStyle.THIN);
+        res.setAlignment(HorizontalAlignment.CENTER);
+        return res;
     }
 }

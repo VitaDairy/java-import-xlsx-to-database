@@ -26,7 +26,7 @@ public class WriteCellProcessor {
                 cell.setCellValue((String) cellData);
                 break;
             case NUMBER:
-                cell.setCellValue((double) cellData);
+                cell.setCellValue(((Number) cellData).doubleValue());
                 break;
             case DATE:
                 cell.setCellValue((Date) cellData);

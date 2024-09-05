@@ -16,9 +16,21 @@ public class PersonColumnMetaData {
     public static final List<CellMetaData> META_DATA_LIST = new ArrayList<>();
 
     static {
-        META_DATA_LIST.add(CellMetaData.builder().name("Name").dataType(DataType.STRING).build());
-        META_DATA_LIST.add(CellMetaData.builder().name("Age").dataType(DataType.NUMBER).build());
-        META_DATA_LIST.add(CellMetaData.builder().name("Address").dataType(DataType.STRING).build());
+        META_DATA_LIST.add(CellMetaData.builder()
+                .name("Name")
+                .dataType(DataType.STRING)
+                .fieldName("name")
+                .build());
+        META_DATA_LIST.add(CellMetaData.builder()
+                .name("Age")
+                .dataType(DataType.NUMBER)
+                .fieldName("age")
+                .build());
+        META_DATA_LIST.add(CellMetaData.builder()
+                .name("Address")
+                .dataType(DataType.STRING)
+                .fieldName("address")
+                .build());
     }
 
     public static Map<String, CellMetaData> getMetaDataMap() {

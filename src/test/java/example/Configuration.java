@@ -3,9 +3,12 @@ package example;
 import com.vitadairy.libraries.importexport.config.Log4j2Configurator;
 import com.vitadairy.libraries.importexport.helper.Log4j2Logger;
 import com.vitadairy.libraries.importexport.processor.ReadRowProcessor;
+import com.vitadairy.libraries.importexport.processor.WriteRowProcessor;
 import com.vitadairy.libraries.importexport.service.*;
 import example.common.Person;
 import example.configuration.PersonColumnMetaData;
+import example.dto.FetchPersonRequest;
+import example.service.FetchPersonService;
 import example.service.ParsePersonService;
 
 /**
@@ -28,6 +31,22 @@ public class Configuration {
                                 new ParseCellNumberService()
                         ),
                         PersonColumnMetaData.getMetaDataMap()
+                ),
+                logger
+        );
+    }
+
+    public WriteExportFileService<Person, FetchPersonRequest> getWriteExportFileService() {
+        return new WriteExportFileServiceImpl<>(
+                new FetchPersonService(),
+                new WriteRowProcessor(
+                        new WriteDataServiceStrategy(
+                                new WriteDataDefaultService(),
+                                new WriteDataNumberService(),
+                                new WriteDataDateService("dd/MM/yyyy", logger)
+                        ),
+                        PersonColumnMetaData.getMetaDataMap(),
+                        logger
                 ),
                 logger
         );

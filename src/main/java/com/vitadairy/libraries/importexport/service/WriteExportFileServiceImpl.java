@@ -91,7 +91,7 @@ public class WriteExportFileServiceImpl<T, R> implements WriteExportFileService<
         cellMetadata.forEach((key, value) -> {
             // write header
             Cell cell = header.createCell(key);
-            cell.setCellValue(value.getFieldName());
+            cell.setCellValue(value.getName());
         });
     }
 

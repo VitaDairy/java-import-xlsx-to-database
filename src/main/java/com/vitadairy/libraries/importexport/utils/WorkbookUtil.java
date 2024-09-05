@@ -28,6 +28,10 @@ public class WorkbookUtil {
             if (file.exists() && !isOverride) {
                 return;
             }
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
 
             outputStream = new FileOutputStream(file);
             workbook.write(outputStream);

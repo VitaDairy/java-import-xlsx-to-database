@@ -33,6 +33,10 @@ public class PersonColumnMetaData {
                 .build());
     }
 
+    public static List<CellMetaData> getMetaDataList() {
+        return META_DATA_LIST;
+    }
+
     public static Map<String, CellMetaData> getMetaDataMap() {
         return META_DATA_LIST.stream().collect(Collectors.toMap(CellMetaData::getName, Function.identity()));
     }

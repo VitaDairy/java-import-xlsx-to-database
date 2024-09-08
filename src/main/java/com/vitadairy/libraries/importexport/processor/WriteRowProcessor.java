@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -19,21 +20,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RequiredArgsConstructor
 public class WriteRowProcessor {
     private final WriteDataServiceStrategy writeDataServiceStrategy;
-    private final Map<String, CellMetaData> columnMetaData;
+    private final List<CellMetaData> columnMetaData;
     private final ILogger iLogger;
 
     public Map<Integer, CellMetaData> readMetaData() {
-        columnMetaData.forEach((key, value) -> {
+        columnMetaData.forEach(value -> {
             String fieldName = value.getFieldName();
             String camelCaseFieldName = StringUtils.snakeToCamel(fieldName, false);
             value.setFieldName(camelCaseFieldName);
         });
 
         final AtomicInteger columnAtomic = new AtomicInteger(0);
-        return columnMetaData.entrySet().stream()
+        return columnMetaData.stream()
+                .map(entry -> Map.entry(columnAtomic.getAndIncrement(), entry))
                 .collect(
                         HashMap::new,
-                        (map, entry) -> map.put(columnAtomic.getAndIncrement(), entry.getValue()),
+                        (map, entry) -> map.put(entry.getKey(), entry.getValue()),
                         HashMap::putAll
                 );
     }

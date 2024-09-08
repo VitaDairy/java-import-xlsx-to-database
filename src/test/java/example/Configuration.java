@@ -45,7 +45,7 @@ public class Configuration {
                                 new WriteDataNumberService(),
                                 new WriteDataDateService("dd/MM/yyyy", logger)
                         ),
-                        PersonColumnMetaData.getMetaDataMap(),
+                        PersonColumnMetaData.getMetaDataList(),
                         logger
                 ),
                 logger

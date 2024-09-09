@@ -63,11 +63,17 @@ public class WriteExportFileServiceImpl<T, R> implements WriteExportFileService<
             if (!fetchRequest.fetchAll()) {
                 break;
             }
+
             Page currentPage = fetchRequest.pageable();
+            if (Objects.isNull(currentPage)) {
+                break;
+            }
+
             final Page pageable = new Page(currentPage.page() + 1, currentPage.size());
             final FetchRequest<R> nextfetchRequest = FetchRequest.<R>builder()
-                    .pageable(pageable)
                     .request(fetchRequest.request())
+                    .pageable(pageable)
+                    .fetchAll(fetchRequest.fetchAll())
                     .build();
             records = fetchDataService.fetch(nextfetchRequest);
         }

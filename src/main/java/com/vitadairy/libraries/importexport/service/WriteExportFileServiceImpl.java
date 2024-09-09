@@ -116,6 +116,14 @@ public class WriteExportFileServiceImpl<T, R> implements WriteExportFileService<
     public ExportResponse exportFile(String folderPath, String fileName, FetchRequest<R> request) throws Exception {
         ExportResponse response = new ExportResponse();
         response.setFailed();
+        if (Objects.isNull(fileName) || fileName.equals("")) {
+            iLogger.error("File name is empty");
+            response.setFailed("File name is empty");
+            return response;
+        }
+        if (!fileName.endsWith(".xlsx")) {
+            fileName = fileName + ".xlsx";
+        }
 
         Workbook workbook = create(folderPath, fileName);
         if (Objects.isNull(workbook)) {
@@ -124,12 +132,11 @@ public class WriteExportFileServiceImpl<T, R> implements WriteExportFileService<
             return response;
         }
 
-        String excelFileName = fileName + ".xlsx";
-        String expectedFilePath = folderPath + File.separator + excelFileName;
+        String expectedFilePath = folderPath + File.separator + fileName;
 
         ExportResponse processRes = process(workbook, expectedFilePath, request);
         if (processRes.getRc() == 0) {
-            processRes.setFileName(excelFileName);
+            processRes.setFileName(fileName);
         }
         return processRes;
     }

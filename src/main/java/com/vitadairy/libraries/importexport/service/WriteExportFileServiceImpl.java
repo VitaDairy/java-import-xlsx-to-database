@@ -70,12 +70,12 @@ public class WriteExportFileServiceImpl<T, R> implements WriteExportFileService<
             }
 
             final Page pageable = new Page(currentPage.page() + 1, currentPage.size());
-            final FetchRequest<R> nextfetchRequest = FetchRequest.<R>builder()
+            fetchRequest = FetchRequest.<R>builder()
                     .request(fetchRequest.getRequest())
                     .pageable(pageable)
                     .fetchAll(fetchRequest.getFetchAll())
                     .build();
-            records = fetchDataService.fetch(nextfetchRequest);
+            records = fetchDataService.fetch(fetchRequest);
         }
 
         try {

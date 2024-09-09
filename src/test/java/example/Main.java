@@ -32,7 +32,7 @@ public class Main {
         String folderPath = System.getProperty("user.dir") + File.separator + "output";
         String fileName = "person_export";
         FetchPersonRequest fetchPersonRequest = new FetchPersonRequest();
-        FetchRequest<FetchPersonRequest> fetchRequest = new FetchRequest<>(fetchPersonRequest, new Page(1, 10), false);
+        FetchRequest<FetchPersonRequest> fetchRequest = new FetchRequest<>(fetchPersonRequest, new Page(0, 10), true);
 
         ExportResponse exportRes = writeService.exportFile(folderPath, fileName, fetchRequest);
         Configuration.logger.info(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(exportRes));

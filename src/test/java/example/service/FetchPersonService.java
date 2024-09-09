@@ -13,6 +13,9 @@ import java.util.List;
 public class FetchPersonService implements FetchDataService<Person, FetchPersonRequest> {
     @Override
     public List<Person> fetch(FetchRequest<FetchPersonRequest> request) {
+        if (request.getPageable().page() == 2) {
+            return List.of();
+        }
         return List.of(
                 new Person.Builder()
                         .name("John")

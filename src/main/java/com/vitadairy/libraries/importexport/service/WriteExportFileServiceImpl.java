@@ -60,20 +60,20 @@ public class WriteExportFileServiceImpl<T, R> implements WriteExportFileService<
                 writeRowProcessor.write(row, data, cellMetadata, writeRowProcessors);
             });
 
-            if (!fetchRequest.fetchAll()) {
+            if (!fetchRequest.getFetchAll()) {
                 break;
             }
 
-            Page currentPage = fetchRequest.pageable();
+            Page currentPage = fetchRequest.getPageable();
             if (Objects.isNull(currentPage)) {
                 break;
             }
 
             final Page pageable = new Page(currentPage.page() + 1, currentPage.size());
             final FetchRequest<R> nextfetchRequest = FetchRequest.<R>builder()
-                    .request(fetchRequest.request())
+                    .request(fetchRequest.getRequest())
                     .pageable(pageable)
-                    .fetchAll(fetchRequest.fetchAll())
+                    .fetchAll(fetchRequest.getFetchAll())
                     .build();
             records = fetchDataService.fetch(nextfetchRequest);
         }

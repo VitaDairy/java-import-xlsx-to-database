@@ -1,10 +1,19 @@
 package com.vitadairy.libraries.importexport.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author duyenthai
  */
 @Builder
-public record FetchRequest<R>(R request, Page pageable, boolean fetchAll) {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class FetchRequest<R> {
+    private R request;
+    private Page pageable;
+    private Boolean fetchAll;
 }

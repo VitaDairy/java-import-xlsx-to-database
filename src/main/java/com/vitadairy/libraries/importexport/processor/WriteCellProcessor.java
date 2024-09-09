@@ -5,7 +5,6 @@ import com.vitadairy.libraries.importexport.service.WriteDataService;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 
-import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -22,14 +21,11 @@ public class WriteCellProcessor {
             return;
         }
         switch (cellMetaData.getDataType()) {
-            case STRING:
+            case STRING, DATE:
                 cell.setCellValue((String) cellData);
                 break;
             case NUMBER:
                 cell.setCellValue(((Number) cellData).doubleValue());
-                break;
-            case DATE:
-                cell.setCellValue((Date) cellData);
                 break;
             default:
                 break;

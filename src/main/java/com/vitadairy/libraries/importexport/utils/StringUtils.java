@@ -38,4 +38,8 @@ public class StringUtils {
         String snakeToCamel = snakeToCamel(str);
         return snakeToCamel.substring(0, 1).toLowerCase() + snakeToCamel.substring(1);
     }
+
+    public static boolean isEmpty(String str) {
+        return str == null || str.isEmpty();
+    }
 }

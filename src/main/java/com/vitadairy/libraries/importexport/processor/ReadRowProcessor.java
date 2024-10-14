@@ -25,7 +25,7 @@ public class ReadRowProcessor {
         Iterator<Cell> iterator = sheet.getRow(0).cellIterator();
         while (iterator.hasNext()) {
             Cell cell = iterator.next();
-            String cellName = cell.getStringCellValue();
+            String cellName = cell.getStringCellValue().trim();
             CellMetaData cellMetaData = columnMetaData.get(cellName);
             if (cellMetaData != null) {
                 metadata.put(cell.getColumnIndex(), cellMetaData);

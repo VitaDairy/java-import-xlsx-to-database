@@ -1,6 +1,7 @@
 package com.vitadairy.libraries.importexport.service;
 
 import com.vitadairy.libraries.importexport.helper.ILogger;
+import com.vitadairy.libraries.importexport.utils.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 
 import java.text.SimpleDateFormat;
@@ -32,6 +33,9 @@ public class ParseCellDateService implements ParseCellService {
     @Override
     public Date parseCellValue(Cell cell) {
         String date = cell.getStringCellValue();
+        if (StringUtils.isEmpty(date)) {
+            return null;
+        }
         try {
             return sdf.parse(date);
         } catch (Exception e) {
